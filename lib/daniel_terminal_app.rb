@@ -58,7 +58,7 @@ class Controller
         when 'Add a travel entry'
           country = @view.display_search
           if @countries.search_country(country)
-            date = @view.get_date_input('When did you travel there?')
+            date = @view.get_date_input('When did you travel there?(Enter in DD-MM-YY)')
             leave_date = @view.get_date_input('When did you leave?')
             current_user.new_travel_entry(country, @countries.search_country(country)['region'], date)
           else

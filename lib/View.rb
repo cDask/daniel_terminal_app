@@ -44,7 +44,8 @@ class View
       table = TTY::Table.new(['header1','header2'], [['a1', 'a2'], ['b1', 'b2']])
       # renderer = TTY::Table::Renderer::Unicode.new(table)
       # renderer.render
-      table.render(:unicode)
+      puts table.render(:unicode)
+
         # puts 'Found the following Country:'
         # hash.each do |key, element|
         #     print "#{key}: "
@@ -123,6 +124,10 @@ class View
   end
 
   def get_date_input(message)
-    @prompt.ask(message, convert: :date)
+    @prompt.ask(message, convert: :date) do |q|
+      # /^(((0?[1-9]|1[012])/(0?[1-9]|1\d|2[0-8])|(0?[13456789]|1[012])/(29|30)|(0?[13578]|1[02])/31)/(19|[2-9]\d)\d{2}|0?2/29/((19|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(([2468][048]|[3579][26])00)))$/
+      q.validate(/\d{2}\-\d{2}\-\d{2}/, 'Invalid Date - Please enter in DD-MM-YY format')
+
+    end
   end
 end
