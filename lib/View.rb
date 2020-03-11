@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'tty-prompt'
+require 'tty-table'
 
 class View
   attr_reader :input
@@ -30,37 +31,42 @@ class View
     @input
   end
 
-  def displayCountry
-    line
-    puts 'Whats the name of the Country?'
-    gets.strip
-  end
+  # def displayCountry
+  #   line
+  #   puts 'Whats the name of the Country?'
+  #   gets.strip
+  # end
 
   def promptCountry(hash)
     line
     if hash
-        puts 'Found the following Country:'
-        hash.each do |key, element|
-            print "#{key}: "
-            if element.class == Hash
-                element.each do |key, element|
-                    print "#{key}: "
-                    if element.class == Hash
-                        element.each do |key, element|
-                            puts "#{key}: #{element}"
-                        end
-                    else
-                        print "#{element}\n"
-                    end
-                end
-            elsif element.class == Array
-                element.each do |element|
-                    print "#{element}\n"
-                end
-            else
-                print "#{element}\n"
-            end
-        end
+      puts "hello"
+      table = TTY::Table.new(['header1','header2'], [['a1', 'a2'], ['b1', 'b2']])
+      # renderer = TTY::Table::Renderer::Unicode.new(table)
+      # renderer.render
+      table.render(:unicode)
+        # puts 'Found the following Country:'
+        # hash.each do |key, element|
+        #     print "#{key}: "
+        #     if element.class == Hash
+        #         element.each do |key, element|
+        #             print "#{key}: "
+        #             if element.class == Hash
+        #                 element.each do |key, element|
+        #                     puts "#{key}: #{element}"
+        #                 end
+        #             else
+        #                 print "#{element}\n"
+        #             end
+        #         end
+        #     elsif element.class == Array
+        #         element.each do |element|
+        #             print "#{element}\n"
+        #         end
+        #     else
+        #         print "#{element}\n"
+        #     end
+        # end
     else
         puts "No country by that name"
     end
@@ -70,7 +76,7 @@ class View
     line
     # puts "Whats the name of the country you searching for?"
     # search = gets.strip
-    search = @prompt.ask('Whats the name of the country you searching for?') do |q|
+    search = @prompt.ask('Whats the name of the country?') do |q|
       q.required true
       q.validate /\A\w+\Z/
       q.modify   :capitalize
@@ -114,6 +120,9 @@ class View
   def show_stat(num1, num2, region)
     line
     puts "You have been in #{num1} out of #{num2} countries in #{region}"
-    line
   end
+
+  def get_date_input(message)
+    @prompt.ask(message, convert: :date)
   end
+end

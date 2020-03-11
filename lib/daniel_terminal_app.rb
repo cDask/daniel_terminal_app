@@ -56,9 +56,10 @@ class Controller
         input = @view.display_user_menu
         case input
         when 'Add a travel entry'
-          country = @view.displayCountry
+          country = @view.display_search
           if @countries.search_country(country)
-            date = @view.get_input('When did you travel there?')
+            date = @view.get_date_input('When did you travel there?')
+            leave_date = @view.get_date_input('When did you leave?')
             current_user.new_travel_entry(country, @countries.search_country(country)['region'], date)
           else
             puts 'No country with that name'
