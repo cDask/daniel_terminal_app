@@ -15,9 +15,11 @@ class Controller
   end
 
   def start
+    system "clear"
     loop do
       select = @view.display_start_menu
       loggedin = false
+      system "clear"
       case select
       when 'Login'
         username = @view.displaylogin
@@ -49,10 +51,11 @@ class Controller
       #   end
       while loggedin
         input = @view.display_user_menu
+        system "clear"
         case input
         when 'Add a travel entry'
           country = @view.display_search
-          country = search.split.map(&:capitalize)*' '
+          country = country.split.map(&:capitalize)*' '
           if @countries.search_country(country)
             date = @view.get_date_input('When did you travel there?(Enter in DD-MM-YYYY)')
             leave_date = @view.get_date_input('When did you leave?')
@@ -60,6 +63,7 @@ class Controller
           else
             puts 'No country with that name'
           end
+          system "clear"
         when 'Search for a country'
           search_for_country
         when 'View my entries'
@@ -90,6 +94,7 @@ class Controller
         else
           puts 'Invalid Entry'
         end
+        
       end
     end
 end

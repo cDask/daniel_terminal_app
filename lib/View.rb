@@ -14,6 +14,8 @@ class View
   end
 
   def display_start_menu
+    font = TTY::Font.new(:doom)
+    puts font.write("Traveler")
     line
     @input = @prompt.select('What would you like to do?', ['Login', 'Sign up', 'Search for a country', 'Close'])
     # pp @input
@@ -49,11 +51,37 @@ class View
       # puts hash["name"]["common"]
       puts @pastel.bold("Officially known as: #{hash["name"]["official"]}")
       line
-      puts @pastel.bold("Name in countries native language:")
+      puts @pastel.bold("Name in countrys\' native language:")
       lang_code = hash["name"]["native"].keys[0]
-      puts "Official name: #{hash["name"]["native"][lang_code]["official"]}"
-      puts "Common name: #{hash["name"]["native"][lang_code]["official"]}"
+      print @pastel.bold("Official name: ")
+      puts "#{hash["name"]["native"][lang_code]["official"]}"
+      print @pastel.bold("Common name: ")
+      puts "#{hash["name"]["native"][lang_code]["official"]}"
+
       line
+
+      puts @pastel.bold.underline.on_black("General Information")
+      general_table = TTY::Table.new header: [@pastel.bold('Language'),@pastel.bold('Web Suffix'),@pastel.bold('International Dialing'),@pastel.bold('Independence')], rows: [[hash["languages"][lang_code],hash["tld"][0],hash["idd"].values[0] + hash["idd"].values[1][0].to_s,hash["independent"].to_s]]
+      puts general_table.render(:unicode)
+
+      line
+
+      puts @pastel.bold.underline.on_green("Currency")
+      currency_holder = hash["currencies"]
+      currency_code = hash["currencies"].keys[0]
+      currency_table = TTY::Table.new header: [@pastel.bold('Name'),@pastel.bold('Symbol'),@pastel.bold('Code')], rows: [[currency_holder[currency_code]["name"],currency_holder[currency_code]["symbol"],currency_code]]
+      puts currency_table.render(:unicode)
+      
+      line
+
+      puts @pastel.bold.underline.on_blue("Geography")
+      geography_table = TTY::Table.new header: [@pastel.bold('Capital'),@pastel.bold('Region'),@pastel.bold('Sub-region'),@pastel.bold('Landlocked')], rows: [[hash["capital"][0],hash["region"],hash["subregion"],hash["landlocked"]]]
+      # general_table = TTY::Table.new(,)
+      puts geography_table.render(:unicode)
+
+      line
+
+      puts @pastel.bold.underline.on_red("Name of Country in Different Languages")
       col =[]
       hash["translations"].each do |v|
         row = []
@@ -62,45 +90,18 @@ class View
         row << v[1]["common"]
         col << row
       end
-      line
-      puts @pastel.bold()
-      line
-      translation_table = TTY::Table.new(['Language','Official name','Common name'], col)
+      translation_table = TTY::Table.new([@pastel.bold('Language'),@pastel.bold('Official name'),@pastel.bold('Common name')], col)
       puts translation_table.render(:unicode)
+      
+      line
 
+      # Attempt to make fully segregated table
       # table = TTY::Table.new ['header1', 'header2'], [['a1', 'a2'], ['b1', 'b2']]
       # puts table.render do |renderer|
       #   renderer.border.separator = :each_row
       # end
-      # renderer = TTY::Table::Renderer::Unicode.new(translation_table)
-      # test = renderer.render do |renderer|
-      #   renderer.border.separator = :each_row
-      # end
-      # puts test
-      pp hash
 
-        # puts 'Found the following Country:'
-        # hash.each do |key, element|
-        #     print "#{key}: "
-        #     if element.class == Hash
-        #         element.each do |key, element|
-        #             print "#{key}: "
-        #             if element.class == Hash
-        #                 element.each do |key, element|
-        #                     puts "#{key}: #{element}"
-        #                 end
-        #             else
-        #                 print "#{element}\n"
-        #             end
-        #         end
-        #     elsif element.class == Array
-        #         element.each do |element|
-        #             print "#{element}\n"
-        #         end
-        #     else
-        #         print "#{element}\n"
-        #     end
-        # end
+      # pp hash
     else
         puts "No country by that name"
     end
