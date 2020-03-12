@@ -2,6 +2,7 @@
 
 require 'tty-prompt'
 require 'tty-table'
+require 'tty-font'
 
 class View
   attr_reader :input
@@ -40,7 +41,10 @@ class View
   def promptCountry(hash)
     line
     if hash
-      puts hash["name"]["common"]
+      font = TTY::Font.new(:doom)
+      puts font.write(hash["name"]["common"])
+      line()
+      # puts hash["name"]["common"]
       puts "Officially known as: #{hash["name"]["official"]}"
       line
       puts "Name in countries native language:"
@@ -111,7 +115,7 @@ class View
   end
 
   def line
-    puts '-' * 30
+    puts '-' * 40
   end
 
   def displaylogin
