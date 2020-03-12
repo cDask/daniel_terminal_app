@@ -40,11 +40,35 @@ class View
   def promptCountry(hash)
     line
     if hash
-      puts "hello"
-      table = TTY::Table.new(['header1','header2'], [['a1', 'a2'], ['b1', 'b2']])
-      # renderer = TTY::Table::Renderer::Unicode.new(table)
-      # renderer.render
-      puts table.render(:unicode)
+      puts hash["name"]["common"]
+      puts "Officially known as: #{hash["name"]["official"]}"
+      line
+      puts "Name in countries native language:"
+      lang_code = hash["name"]["native"].keys[0]
+      puts "Official name: #{hash["name"]["native"][lang_code]["official"]}"
+      puts "Common name: #{hash["name"]["native"][lang_code]["official"]}"
+      line
+      col =[]
+      hash["translations"].each do |v|
+        row = []
+        row << v[0]
+        row << v[1]["official"]
+        row << v[1]["common"]
+        col << row
+      end
+      translation_table = TTY::Table.new(['Language','Official name','Common name'], col)
+      puts translation_table.render(:unicode)
+
+      table = TTY::Table.new ['header1', 'header2'], [['a1', 'a2'], ['b1', 'b2']]
+      puts table.render do |renderer|
+        renderer.border.separator = :each_row
+      end
+      # renderer = TTY::Table::Renderer::Unicode.new(translation_table)
+      # test = renderer.render do |renderer|
+      #   renderer.border.separator = :each_row
+      # end
+      # puts test
+      pp hash
 
         # puts 'Found the following Country:'
         # hash.each do |key, element|
