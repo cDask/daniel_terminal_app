@@ -52,6 +52,7 @@ class Controller
         case input
         when 'Add a travel entry'
           country = @view.display_search
+          country = search.split.map(&:capitalize)*' '
           if @countries.search_country(country)
             date = @view.get_date_input('When did you travel there?(Enter in DD-MM-YYYY)')
             leave_date = @view.get_date_input('When did you leave?')

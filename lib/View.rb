@@ -3,12 +3,14 @@
 require 'tty-prompt'
 require 'tty-table'
 require 'tty-font'
+require 'pastel'
 
 class View
   attr_reader :input
 
   def initialize
     @prompt = TTY::Prompt.new
+    @pastel = Pastel.new
   end
 
   def display_start_menu
@@ -45,9 +47,9 @@ class View
       puts font.write(hash["name"]["common"])
       line()
       # puts hash["name"]["common"]
-      puts "Officially known as: #{hash["name"]["official"]}"
+      puts @pastel.bold("Officially known as: #{hash["name"]["official"]}")
       line
-      puts "Name in countries native language:"
+      puts @pastel.bold("Name in countries native language:")
       lang_code = hash["name"]["native"].keys[0]
       puts "Official name: #{hash["name"]["native"][lang_code]["official"]}"
       puts "Common name: #{hash["name"]["native"][lang_code]["official"]}"
@@ -61,7 +63,8 @@ class View
         col << row
       end
       line
-      
+      puts @pastel.bold()
+      line
       translation_table = TTY::Table.new(['Language','Official name','Common name'], col)
       puts translation_table.render(:unicode)
 
