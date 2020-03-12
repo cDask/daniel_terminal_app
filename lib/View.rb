@@ -160,12 +160,18 @@ class View
     line
     puts "You have been in #{num1} out of #{num2} countries in #{region}"
   end
-
+  
   def get_date_input(message)
+    validator = -> (str) {
+      begin
+        Date.parse(str)
+        return str
+      rescue ArgumentError
+        return nil
+      end
+    }
     @prompt.ask(message, convert: :date) do |q|
-      # /^(((0?[1-9]|1[012])/(0?[1-9]|1\d|2[0-8])|(0?[13456789]|1[012])/(29|30)|(0?[13578]|1[02])/31)/(19|[2-9]\d)\d{2}|0?2/29/((19|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(([2468][048]|[3579][26])00)))$/
-      q.validate(/\d{2}\-\d{2}\-\d{2}/, 'Invalid Date - Please enter in DD-MM-YY format')
-
+      q.validate(validator,"Invalid Date - Please enter in DD-MM-YYYY form")
     end
   end
 end

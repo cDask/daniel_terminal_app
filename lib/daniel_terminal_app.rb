@@ -7,11 +7,6 @@ require_relative 'User'
 require 'json'
 require 'tty-prompt'
 
-module DanielTerminalApp
-  class Error < StandardError; end
-  # Your code goes here...
-end
-
 class Controller
   def initialize
     @users = [User.new('Daniel', 'password', [])]
@@ -58,7 +53,7 @@ class Controller
         when 'Add a travel entry'
           country = @view.display_search
           if @countries.search_country(country)
-            date = @view.get_date_input('When did you travel there?(Enter in DD-MM-YY)')
+            date = @view.get_date_input('When did you travel there?(Enter in DD-MM-YYYY)')
             leave_date = @view.get_date_input('When did you leave?')
             current_user.new_travel_entry(country, @countries.search_country(country)['region'], date)
           else
