@@ -95,6 +95,7 @@ end
 
   def search_for_country
     search = @view.display_search
+    search = search.split.map(&:capitalize)*' '
     @view.promptCountry(@countries.search_country(search))
   end
 

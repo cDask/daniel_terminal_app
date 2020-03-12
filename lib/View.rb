@@ -60,13 +60,15 @@ class View
         row << v[1]["common"]
         col << row
       end
+      line
+      
       translation_table = TTY::Table.new(['Language','Official name','Common name'], col)
       puts translation_table.render(:unicode)
 
-      table = TTY::Table.new ['header1', 'header2'], [['a1', 'a2'], ['b1', 'b2']]
-      puts table.render do |renderer|
-        renderer.border.separator = :each_row
-      end
+      # table = TTY::Table.new ['header1', 'header2'], [['a1', 'a2'], ['b1', 'b2']]
+      # puts table.render do |renderer|
+      #   renderer.border.separator = :each_row
+      # end
       # renderer = TTY::Table::Renderer::Unicode.new(translation_table)
       # test = renderer.render do |renderer|
       #   renderer.border.separator = :each_row
@@ -107,15 +109,17 @@ class View
     # search = gets.strip
     search = @prompt.ask('Whats the name of the country?') do |q|
       q.required true
-      q.validate /\A\w+\Z/
-      q.modify   :capitalize
+      # q.validate /\A\w+\Z/
+      q.modify  :strip
+      q.modify  :capitalize
+      # q.modify  :titleize
     end
-
+    puts search
     search
   end
 
   def line
-    puts '-' * 40
+    puts '-' * 50
   end
 
   def displaylogin
