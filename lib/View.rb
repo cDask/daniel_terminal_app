@@ -143,7 +143,17 @@ class View
   end
 
   def show_entries(arr)
-    pp arr
+    line
+      col =[]
+      arr.each do |v|
+        row = []
+        row << v["date"]
+        row << v["country"]
+        row << v["region"]
+        col << row
+      end
+    entry_table = TTY::Table.new(['Date','Country','Region'], col)
+    puts entry_table.render(:unicode)
   end
 
   def show_stat(num1, num2, region)
