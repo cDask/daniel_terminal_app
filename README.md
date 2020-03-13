@@ -41,15 +41,105 @@ All errors or incorrect inputs will prompt the user with an error message and th
 
 ## Implementation Plan
 
-To organise my implementation tasks I used trello. Below is a screenshot of my trello part way through project. To see the final board I've added the Trello link below.
+To organise my implementation tasks I used trello. Below is a screenshot of my trello part way through the project. To see the final board I've added the Trello link below.
 
 ![Trello board](./trelloboard.png)
+
+Trello board link:
+https://trello.com/b/p1XRA23m/travel-terminal-app
 
 ## UML Diagram
 
 ![UML Diagram](./travel-terminal-app.png)
 
 ## Installation
+
+### Linux
+    
+#### Git
+
+First you will need to install git.
+
+First, use the apt package management tools to update your local package index. With the update complete, you can download and install Git:
+
+    sudo apt update
+    sudo apt install git
+
+You can confirm that you have installed Git correctly by running the following command:
+
+    git --version
+
+Output
+
+    git version 2.17.1
+
+ow that you have Git installed, you should configure it so that the generated commit messages will contain your correct information.
+
+This can be achieved by using the git config command. Specifically, we need to provide our name and email address because Git embeds this information into each commit we do. We can go ahead and add this information by typing:
+
+    git config --global user.name "Your Name"
+    git config --global user.email "youremail@domain.com"
+
+We can see all of the configuration items that have been set by typing:
+
+    git config --list
+
+Output
+user.name=Your Name
+user.email=youremail@domain.com
+...
+
+The information you enter is stored in your Git configuration file, which you can optionally edit by hand with a text editor like this:
+
+    nano ~/.gitconfig
+
+~/.gitconfig contents
+
+[user]
+  name = Your Name
+  email = youremail@domain.com
+
+There are many other options that you can set, but these are the two essential ones needed. If you skip this step, you’ll likely see warnings when you commit to Git. This makes more work for you because you will then have to revise the commits you have done with the corrected information.
+
+
+There are some configurations that we need to perform before going further as well.
+
+Run the following commands in terminal
+
+    git config --global color.us true
+
+    git config --global user.name "YOUR NAME"
+
+Replace YOUR NAME with your actual name
+
+    git config --global user.email "YOUR@EMAIL.com"
+
+Replace YOUR@EMAIL.com with your actual email address
+
+You only need to do this configuration once.
+
+
+rbenv
+
+Follow this guide to install rbenv.
+
+Please only follow the guide up to the end of Step 1.
+
+    Ruby
+
+rbenv install 2.7.0
+
+This will install a version of Ruby on your local machine.
+
+To actually use 2.7.0 globally on your machine you need to run:
+
+rbenv global 2.7.0
+
+Run the following command in terminal:
+
+ruby --version 
+
+If you see 2.7.0 you’re good to go.
 
 Add this line to your application's Gemfile:
 
@@ -78,6 +168,12 @@ Once in irb enter:
 This should launch the application and it should be ready to use.
 To navigate the app all you have to do is used the arrow keys to select menu options and type in input to the terminal when prompted.
 
+## Testing
+
+All testing was done manually but should be automated for future projects. The link below will take you to a google sheet with all the test.
+
+https://docs.google.com/spreadsheets/d/1ZtUioG1ANQXNkF1SdVhGrC1zhpo2_VRq6Gf6T3W1p3s/edit?usp=sharing
+
 
 ## Development
 
@@ -87,7 +183,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/daniel_terminal_app.
+Bug reports and pull requests are welcome on GitHub at https://github.com/cDask/daniel_terminal_app.
 
 
 
