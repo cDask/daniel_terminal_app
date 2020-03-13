@@ -18,11 +18,6 @@ class Countries
     nil
   end
 
-  def save_data
-    jsondata = @countries.to_json
-    File.write(@root + '/countries.json', jsondata)
-  end
-
   def make_shortlist(key1, key2)
     short_list = []
     @countries.each do |index|
