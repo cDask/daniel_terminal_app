@@ -11,4 +11,4 @@ File.write('countries.json', jsondata)
 hash = {}
 puts hash.class.class
 
-# do 
+# do

@@ -13,7 +13,7 @@ class User
   end
 
   def new_travel_entry(country_name, region, date)
-    @travel_entries << { "country" => country_name, "region" => region, "date" => date }
+    @travel_entries << { 'country' => country_name, 'region' => region, 'date' => date }
   end
 
   def to_json(*_args)
@@ -22,7 +22,6 @@ class User
 
   def self.from_json(string)
     data = JSON.load(File.read(string))
-    # pp data
     new(data['login'], data['password'], data['travel_entries'])
   end
 end
