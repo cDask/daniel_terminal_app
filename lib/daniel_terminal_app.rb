@@ -66,8 +66,6 @@ class Controller
 
           user_uni_travel = current_user.travel_entries.map { |p| { 'country' => p['country'], 'region' => p['region'] } }.uniq
 
-          pp user_uni_travel
-
           unique_regions = new_short_list.map { |p| p['region'] }.uniq
 
           @view.show_stat(user_uni_travel.length, new_short_list.length, 'The World')

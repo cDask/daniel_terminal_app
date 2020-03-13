@@ -44,7 +44,7 @@ class View
 
       line
 
-      puts @pastel.bold.underline.on_black('General Information')
+      puts @pastel.bold.underline.on_yellow('General Information')
       general_table = TTY::Table.new header: [@pastel.bold('Language'), @pastel.bold('Web Suffix'), @pastel.bold('International Dialing'), @pastel.bold('Independence')], rows: [[hash['languages'][lang_code], hash['tld'][0], hash['idd'].values[0] + hash['idd'].values[1][0].to_s, hash['independent'].to_s]]
       puts general_table.render(:unicode)
 
@@ -90,7 +90,6 @@ class View
       q.modify  :strip
       q.modify  :capitalize
     end
-    puts search
     search
   end
 

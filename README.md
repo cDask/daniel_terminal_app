@@ -72,7 +72,12 @@ All errors or incorrect inputs will prompt the user with an error message and th
 
 ## Implementation Plan
 
-Below 
+To organise my implementation tasks I used trello. Below is a screenshot of my trello part way through project. To see the final board I've added the Trello link below.
+
+![Trello board](./trelloboard.png)
+
+
+
 ## UML Diagram
 
 ![UML Diagram](./travel-terminal-app.png)

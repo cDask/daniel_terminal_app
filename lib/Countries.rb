@@ -6,7 +6,8 @@ class Countries
   attr_accessor :countries
 
   def initialize
-    jsondata_temp = File.read('countries.json')
+    @root = File.expand_path('..', __FILE__)
+    jsondata_temp = File.read(@root + '/countries.json')
     @countries = JSON.parse(jsondata_temp)
   end
 
@@ -19,7 +20,7 @@ class Countries
 
   def save_data
     jsondata = @countries.to_json
-    File.write('countries.json', jsondata)
+    File.write(@root + '/countries.json', jsondata)
   end
 
   def make_shortlist(key1, key2)
