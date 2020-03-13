@@ -6,7 +6,7 @@ class Countries
   attr_accessor :countries
 
   def initialize
-    @root = File.expand_path('..', __FILE__)
+    @root = File.expand_path(__dir__)
     jsondata_temp = File.read(@root + '/countries.json')
     @countries = JSON.parse(jsondata_temp)
   end
