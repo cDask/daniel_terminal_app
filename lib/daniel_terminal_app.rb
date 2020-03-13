@@ -106,7 +106,20 @@ end
       current_user
     end
   end
+
+  def pre_start
+    if ARGV.length > 0
+      country = ARGV.map(&:capitalize) * ' '
+      if @countries.search_country(country)
+        @view.promptCountry(@countries.search_country(country))
+      else
+        puts "No country by the name: #{country}"
+      end
+    else
+      start
+    end
+  end
 end
 
 master = Controller.new
-master.start
+master.pre_start
