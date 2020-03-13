@@ -30,6 +30,9 @@ Based on the two features above the app will be able to show some travel statist
 
 The app is required to have an easy navigable menu system that allows user to easily log in, sign up, search countries or close the app. Once logged in they must be able to add travel entries, search for countries, see their travel statistics, see their travel entries and log out from their account.
 
+### 5. ARGV Country Information
+
+The app should be able to take an argument from terminal and check if that is a country that exist and quickly show that countries information in terminal. For a better reference check the 'Usage' section below.
 
 ## App Outline
 
@@ -130,6 +133,15 @@ Once in irb enter:
 
 This should launch the application and it should be ready to use.
 To navigate the app all you have to do is used the arrow keys to select menu options and type in input to the terminal when prompted.
+
+If the app is downloaded from the above github repository the app should be able to be launched from terminal using the below command.
+
+    ruby daniel_terminal_app.rb
+Using it this way also allows you to pass arguments. This way you can quickly get country information by passing a country name as an argument when executing this code. E.g:
+    
+    ruby daniel_terminal_app.rb sweden
+
+The would show the information page for Sweden in the terminal.
 
 ## Testing
 
