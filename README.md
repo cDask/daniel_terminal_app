@@ -60,47 +60,7 @@ https://trello.com/b/p1XRA23m/travel-terminal-app
 
 First you will need to install git.
 
-First, use the apt package management tools to update your local package index. With the update complete, you can download and install Git:
-
-    sudo apt update
-    sudo apt install git
-
-You can confirm that you have installed Git correctly by running the following command:
-
-    git --version
-
-Output
-
-    git version 2.17.1
-
-ow that you have Git installed, you should configure it so that the generated commit messages will contain your correct information.
-
-This can be achieved by using the git config command. Specifically, we need to provide our name and email address because Git embeds this information into each commit we do. We can go ahead and add this information by typing:
-
-    git config --global user.name "Your Name"
-    git config --global user.email "youremail@domain.com"
-
-We can see all of the configuration items that have been set by typing:
-
-    git config --list
-
-Output
-user.name=Your Name
-user.email=youremail@domain.com
-...
-
-The information you enter is stored in your Git configuration file, which you can optionally edit by hand with a text editor like this:
-
-    nano ~/.gitconfig
-
-~/.gitconfig contents
-
-[user]
-  name = Your Name
-  email = youremail@domain.com
-
-There are many other options that you can set, but these are the two essential ones needed. If you skip this step, you’ll likely see warnings when you commit to Git. This makes more work for you because you will then have to revise the commits you have done with the corrected information.
-
+Follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-18-04) to install git.
 
 There are some configurations that we need to perform before going further as well.
 
@@ -118,28 +78,31 @@ Replace YOUR@EMAIL.com with your actual email address
 
 You only need to do this configuration once.
 
+#### rbenv
 
-rbenv
-
-Follow this guide to install rbenv.
+Follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04) to install rbenv.
 
 Please only follow the guide up to the end of Step 1.
 
-    Ruby
+#### Ruby
 
-rbenv install 2.7.0
+    rbenv install 2.7.0
 
 This will install a version of Ruby on your local machine.
 
 To actually use 2.7.0 globally on your machine you need to run:
 
-rbenv global 2.7.0
+    rbenv global 2.7.0
 
 Run the following command in terminal:
 
-ruby --version 
+    ruby --version 
 
 If you see 2.7.0 you’re good to go.
+
+### Mac/Linux Gem Installation
+
+Now that you have Git, rbenv and ruby set up you can run ruby gems.
 
 Add this line to your application's Gemfile:
 
@@ -173,13 +136,6 @@ To navigate the app all you have to do is used the arrow keys to select menu opt
 All testing was done manually but should be automated for future projects. The link below will take you to a google sheet with all the test.
 
 https://docs.google.com/spreadsheets/d/1ZtUioG1ANQXNkF1SdVhGrC1zhpo2_VRq6Gf6T3W1p3s/edit?usp=sharing
-
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
